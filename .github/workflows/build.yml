@@ -1,0 +1,95 @@
+name: Build and release
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: stable
+      - name: Verify and test
+        run: |
+          go version
+          go mod verify
+          test -z "$(gofmt -l cmd internal)"
+          go test -race ./...
+          go vet ./...
+      - name: Real TUN lifecycle in isolated network namespace
+        run: |
+          go test -c -o /tmp/dtun-tun-test ./internal/tun
+          sudo ip netns add dtun-ci
+          trap 'sudo ip netns del dtun-ci' EXIT
+          sudo ip netns exec dtun-ci env DTUN_TEST_TUN=1 /tmp/dtun-tun-test -test.v -test.run '^TestCloseUnblocksRead$'
+  build:
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: stable
+      - name: Package
+        env:
+          GOARCH: ${{ matrix.arch }}
+          GOOS: linux
+          CGO_ENABLED: '0'
+        run: |
+          mkdir -p dist/package
+          go build -trimpath -ldflags='-s -w' -o dist/package/dtun ./cmd/dtun
+          cp README.md CONFIGURATION.md dist/package/
+          mkdir -p dist/package/scripts
+          cp scripts/certgen.sh dist/package/scripts/
+          printf 'commit=%s\nref=%s\n' "$GITHUB_SHA" "$GITHUB_REF" > dist/package/BUILDINFO.txt
+          go version >> dist/package/BUILDINFO.txt
+          tar -C dist/package -czf "dist/dtun_linux_${GOARCH}.tar.gz" .
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dtun-linux-${{ matrix.arch }}
+          path: dist/*.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: [test, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: dtun-linux-*
+          merge-multiple: true
+          path: dist
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          cd dist
+          sha256sum *.tar.gz > SHA256SUMS
+          flags=()
+          if [[ "$TAG" == v0.* || "$TAG" == *-* ]]; then flags+=(--prerelease); fi
+          gh release create "$TAG" ./*.tar.gz SHA256SUMS --verify-tag --title "$TAG" --generate-notes "${flags[@]}"
