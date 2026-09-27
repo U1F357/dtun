@@ -64,7 +64,7 @@ systemctl restart dtun-poc
 
 ## 可调资源限制
 
-TUN MTU、发送队列、重组容量/超时、旧通道排空时间、UDP 缓冲区和握手超时均支持配置，保留原默认值并校验范围。见 [配置说明](CONFIGURATION.md) 与 [本轮检查记录](reports/review-20260928.md)。队列仍为 FIFO；增大容量不代表实现公平排队。
+TUN MTU、发送队列、重组容量/超时、旧通道排空时间、UDP 缓冲区和握手超时均支持配置，保留原默认值并校验范围。见 [配置说明](../CONFIGURATION.md) 与 [本轮检查记录](../reports/review-20260928.md)。队列仍为 FIFO；增大容量不代表实现公平排队。
 
 ## 构建与测试
 
