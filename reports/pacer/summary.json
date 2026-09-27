@@ -1,0 +1,110 @@
+[
+  {
+    "mode": "base",
+    "phase": "forward",
+    "mbps": 49.87040967537754,
+    "tcp_retransmits": 21,
+    "bj": {
+      "mean_cpu_one_core_percent": 19.611957266554963,
+      "peak_cpu_one_core_percent": 22.97163189914812,
+      "max_rss_mib": 13.9609375,
+      "samples": 14
+    },
+    "hk": {
+      "mean_cpu_one_core_percent": 39.41285668510883,
+      "peak_cpu_one_core_percent": 48.97725917225838,
+      "max_rss_mib": 11.265625,
+      "samples": 14
+    }
+  },
+  {
+    "mode": "base",
+    "phase": "reverse",
+    "mbps": 76.1111135784928,
+    "tcp_retransmits": 1972,
+    "bj": {
+      "mean_cpu_one_core_percent": 34.32864250768538,
+      "peak_cpu_one_core_percent": 50.96530507175806,
+      "max_rss_mib": 13.08203125,
+      "samples": 14
+    },
+    "hk": {
+      "mean_cpu_one_core_percent": 49.69073216855619,
+      "peak_cpu_one_core_percent": 71.96336927703094,
+      "max_rss_mib": 12.18359375,
+      "samples": 14
+    }
+  },
+  {
+    "mode": "80",
+    "phase": "forward",
+    "mbps": 67.8925758276042,
+    "tcp_retransmits": 121,
+    "bj": {
+      "mean_cpu_one_core_percent": 31.615623634573303,
+      "peak_cpu_one_core_percent": 37.97012001975222,
+      "max_rss_mib": 12.17578125,
+      "samples": 14
+    },
+    "hk": {
+      "mean_cpu_one_core_percent": 60.6871440072026,
+      "peak_cpu_one_core_percent": 68.97912981589646,
+      "max_rss_mib": 12.76171875,
+      "samples": 14
+    }
+  },
+  {
+    "mode": "80",
+    "phase": "reverse",
+    "mbps": 63.0910388407387,
+    "tcp_retransmits": 995,
+    "bj": {
+      "mean_cpu_one_core_percent": 39.09559910861567,
+      "peak_cpu_one_core_percent": 45.95965843409464,
+      "max_rss_mib": 11.92578125,
+      "samples": 14
+    },
+    "hk": {
+      "mean_cpu_one_core_percent": 52.40899870504171,
+      "peak_cpu_one_core_percent": 60.978069968140126,
+      "max_rss_mib": 13.1015625,
+      "samples": 14
+    }
+  },
+  {
+    "mode": "80",
+    "phase": "duplex-forward",
+    "mbps": 59.98642541023073,
+    "tcp_retransmits": 309,
+    "bj": {
+      "mean_cpu_one_core_percent": 50.53823503741874,
+      "peak_cpu_one_core_percent": 59.983245343953925,
+      "max_rss_mib": 12.05859375,
+      "samples": 19
+    },
+    "hk": {
+      "mean_cpu_one_core_percent": 90.51662913359553,
+      "peak_cpu_one_core_percent": 107.9694557677156,
+      "max_rss_mib": 13.078125,
+      "samples": 19
+    }
+  },
+  {
+    "mode": "80",
+    "phase": "duplex-reverse",
+    "mbps": 53.66219278020373,
+    "tcp_retransmits": 89,
+    "bj": {
+      "mean_cpu_one_core_percent": 50.53823503741874,
+      "peak_cpu_one_core_percent": 59.983245343953925,
+      "max_rss_mib": 12.05859375,
+      "samples": 19
+    },
+    "hk": {
+      "mean_cpu_one_core_percent": 90.51662913359553,
+      "peak_cpu_one_core_percent": 107.9694557677156,
+      "max_rss_mib": 13.078125,
+      "samples": 19
+    }
+  }
+]

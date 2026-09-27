@@ -1,0 +1,44 @@
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 42866
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 42880
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.01   sec  23.2 MBytes   194 Mbits/sec                  
+[  5]   1.01-2.01   sec  27.1 MBytes   226 Mbits/sec                  
+[  5]   2.01-3.01   sec  26.5 MBytes   223 Mbits/sec                  
+[  5]   3.01-4.01   sec  25.9 MBytes   216 Mbits/sec                  
+[  5]   4.01-5.01   sec  24.1 MBytes   204 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-5.01   sec   127 MBytes   213 Mbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 42890
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 42902
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  25.6 MBytes   215 Mbits/sec   31    113 KBytes       
+[  5]   1.00-2.00   sec  27.7 MBytes   232 Mbits/sec   12    161 KBytes       
+[  5]   2.00-3.00   sec  26.5 MBytes   222 Mbits/sec   35    141 KBytes       
+[  5]   3.00-4.00   sec  24.0 MBytes   202 Mbits/sec   25    148 KBytes       
+[  5]   4.00-5.00   sec  26.8 MBytes   225 Mbits/sec   20    170 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-5.00   sec   131 MBytes   219 Mbits/sec  123             sender
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 54746
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 36195
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec   611 KBytes  5.00 Mbits/sec  0.072 ms  0/425 (0%)  
+[  5]   1.00-2.00   sec   610 KBytes  4.99 Mbits/sec  0.050 ms  0/424 (0%)  
+[  5]   2.00-3.00   sec   611 KBytes  5.00 Mbits/sec  0.373 ms  0/425 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-3.00   sec  1.79 MBytes  5.00 Mbits/sec  0.373 ms  0/1274 (0%)  receiver
+iperf3: interrupt - the server has terminated
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------

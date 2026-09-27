@@ -1,0 +1,15 @@
+active
+/opt/dtun-poc/dtun --max-rate-bps 80000000 --endpoint 47.242.247.74:80 --address 10.255.255.1/30 --cert /etc/dtun/client.crt --key /etc/dtun/client.key --peer-pin c3ddcf7e5c14fb76da79ccde5034af36fd699b0aa102c7fd1d7774aeee5f3eab default via 172.25.63.253 dev eth0 proto dhcp src 172.25.43.119 metric 100 
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default
+10.254.253.0/30 dev dtexit-ns proto kernel scope link src 10.254.253.2 
+10.255.255.0/30 via 10.254.253.1 dev dtexit-ns 
+dtun-exit (id: 7)
+PING 10.255.255.2 (10.255.255.2) 1472(1500) bytes of data.
+1480 bytes from 10.255.255.2: icmp_seq=1 ttl=63 time=49.5 ms
+1480 bytes from 10.255.255.2: icmp_seq=2 ttl=63 time=49.7 ms
+
+--- 10.255.255.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 49.486/49.587/49.689/0.244 ms

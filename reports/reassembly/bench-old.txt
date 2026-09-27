@@ -1,0 +1,9 @@
+goos: darwin
+goarch: arm64
+pkg: dtun/internal/reassembly
+cpu: Apple M1 Pro
+BenchmarkReassembly1500-8   	  456439	      2952 ns/op	   26192 B/op	       3 allocs/op
+BenchmarkReassembly1500-8   	  250767	      7529 ns/op	   26192 B/op	       3 allocs/op
+BenchmarkReassembly1500-8   	  167227	      7248 ns/op	   26193 B/op	       3 allocs/op
+PASS
+ok  	dtun/internal/reassembly	6.377s

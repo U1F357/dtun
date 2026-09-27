@@ -1,0 +1,28 @@
+[
+  {
+    "phase": "forward",
+    "mbps": 67.1700417779888,
+    "retransmits": 106,
+    "bj": {
+      "cpu_mean": 33.11573335429709,
+      "rss_peak_mib": 12.390625
+    },
+    "hk": {
+      "cpu_mean": 52.4796479377589,
+      "rss_peak_mib": 12.58203125
+    }
+  },
+  {
+    "phase": "reverse",
+    "mbps": 66.88954792022184,
+    "retransmits": 361,
+    "bj": {
+      "cpu_mean": 30.68851013438609,
+      "rss_peak_mib": 12.18359375
+    },
+    "hk": {
+      "cpu_mean": 53.4054623708284,
+      "rss_peak_mib": 13.0546875
+    }
+  }
+]

@@ -1,0 +1,15 @@
+Cannot open network namespace "dtun-c": No such file or directory
+Cannot open network namespace "dtun-s": No such file or directory
+default via 172.25.63.253 dev eth0 proto dhcp src 172.25.43.119 metric 100 
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default
+10.254.253.0/30 dev dtexit-ns proto kernel scope link src 10.254.253.2 
+10.255.255.0/30 via 10.254.253.1 dev dtexit-ns 
+PING 10.255.255.2 (10.255.255.2) 56(84) bytes of data.
+64 bytes from 10.255.255.2: icmp_seq=1 ttl=63 time=49.6 ms
+64 bytes from 10.255.255.2: icmp_seq=2 ttl=63 time=49.5 ms
+
+--- 10.255.255.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 49.506/49.549/49.593/0.226 ms

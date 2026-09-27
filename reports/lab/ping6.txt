@@ -1,0 +1,8 @@
+PING fd42:6474:756e::2(fd42:6474:756e::2) 1452 data bytes
+1460 bytes from fd42:6474:756e::2: icmp_seq=1 ttl=64 time=0.378 ms
+1460 bytes from fd42:6474:756e::2: icmp_seq=2 ttl=64 time=0.472 ms
+1460 bytes from fd42:6474:756e::2: icmp_seq=3 ttl=64 time=0.465 ms
+
+--- fd42:6474:756e::2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2037ms
+rtt min/avg/max/mdev = 0.378/0.438/0.472/0.046 ms

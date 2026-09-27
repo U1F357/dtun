@@ -1,0 +1,33 @@
+{
+  "outer_udp_packets": 148150,
+  "max_udp_payload": 1153,
+  "outer_ip_fragments": 0,
+  "udp_payload_histogram": {
+    "1153": 62618,
+    "453": 62618,
+    "101": 4,
+    "113": 10,
+    "105": 21641,
+    "142": 5,
+    "106": 21,
+    "109": 9,
+    "204": 1,
+    "117": 354,
+    "125": 77,
+    "133": 396,
+    "93": 386,
+    "394": 3,
+    "219": 1,
+    "393": 2,
+    "222": 1,
+    "85": 2,
+    "369": 1
+  },
+  "application_records": 148150,
+  "duplicate_application_record_sequences": 0,
+  "tcp_packets_client": 84254,
+  "tcp_packets_server": 84253,
+  "tcp_packets_identical": 84238,
+  "tcp_only_client": 16,
+  "tcp_only_server": 15
+}

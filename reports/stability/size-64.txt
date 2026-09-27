@@ -1,0 +1,8 @@
+PING 10.255.255.2 (10.255.255.2) 64(92) bytes of data.
+72 bytes from 10.255.255.2: icmp_seq=1 ttl=64 time=0.253 ms
+72 bytes from 10.255.255.2: icmp_seq=2 ttl=64 time=0.442 ms
+72 bytes from 10.255.255.2: icmp_seq=3 ttl=64 time=0.324 ms
+
+--- 10.255.255.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2044ms
+rtt min/avg/max/mdev = 0.253/0.339/0.442/0.080 ms

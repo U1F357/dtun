@@ -1,0 +1,80 @@
+[
+  {
+    "run": "evict-1",
+    "received_mbps": 15.852408712168348,
+    "loss_percent": 83.79075574820958,
+    "cpu_mean": 13.442101758220366,
+    "rss_peak_mib": 11.15625,
+    "limits": 0,
+    "evictions": 0,
+    "pending_peak": 1,
+    "bytes_peak": 1700,
+    "reassembly_completed": 13784,
+    "timeouts": 0
+  },
+  {
+    "run": "evict-2",
+    "received_mbps": 15.496249109753963,
+    "loss_percent": 84.1820087871185,
+    "cpu_mean": 13.267202552879462,
+    "rss_peak_mib": 10.6953125,
+    "limits": 0,
+    "evictions": 0,
+    "pending_peak": 2,
+    "bytes_peak": 3400,
+    "reassembly_completed": 13451,
+    "timeouts": 0
+  },
+  {
+    "run": "evict-3",
+    "received_mbps": 15.624840039791403,
+    "loss_percent": 84.05814172634753,
+    "cpu_mean": 13.470845494357835,
+    "rss_peak_mib": 10.859375,
+    "limits": 0,
+    "evictions": 0,
+    "pending_peak": 2,
+    "bytes_peak": 3400,
+    "reassembly_completed": 13556,
+    "timeouts": 0
+  },
+  {
+    "run": "old-1",
+    "received_mbps": 15.914753099272243,
+    "loss_percent": 83.75459342316027,
+    "cpu_mean": 13.188330955381417,
+    "rss_peak_mib": 11.0703125,
+    "limits": 0,
+    "evictions": 0,
+    "pending_peak": null,
+    "bytes_peak": null,
+    "reassembly_completed": 13815,
+    "timeouts": 0
+  },
+  {
+    "run": "old-2",
+    "received_mbps": 15.836482704483096,
+    "loss_percent": 83.83586167907283,
+    "cpu_mean": 14.087440852362628,
+    "rss_peak_mib": 11.16015625,
+    "limits": 0,
+    "evictions": 0,
+    "pending_peak": null,
+    "bytes_peak": null,
+    "reassembly_completed": 13746,
+    "timeouts": 0
+  },
+  {
+    "run": "old-3",
+    "received_mbps": 15.86584196928816,
+    "loss_percent": 83.82917579440793,
+    "cpu_mean": 14.58408026902867,
+    "rss_peak_mib": 10.6171875,
+    "limits": 0,
+    "evictions": 0,
+    "pending_peak": null,
+    "bytes_peak": null,
+    "reassembly_completed": 13752,
+    "timeouts": 0
+  }
+]

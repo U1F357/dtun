@@ -1,0 +1,7 @@
+active
+State  Recv-Q Send-Q      Local Address:Port  Peer Address:PortProcess                                   
+UNCONN 0      0                 0.0.0.0:23333      0.0.0.0:*    users:(("dtun",pid=104107,fd=8))         
+UNCONN 0      0                 0.0.0.0:80         0.0.0.0:*    users:(("dtun",pid=104107,fd=6))         
+UNCONN 0      0                 0.0.0.0:443        0.0.0.0:*    users:(("dtun",pid=104107,fd=7))         
+default via 172.31.31.253 dev eth0 proto dhcp src 172.31.25.180 metric 100 
+8e7826fafef9db399c714b7c7cac6f1e9a7bbae4d54be30f45c00803dad40bbc  /opt/dtun-poc/dtun

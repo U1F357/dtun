@@ -1,0 +1,6 @@
+PING fd42:eeee::2(fd42:eeee::2) 1952 data bytes
+From fd42:6474:756e::2 icmp_seq=1 Packet too big: mtu=1500
+
+--- fd42:eeee::2 ping statistics ---
+1 packets transmitted, 0 received, +1 errors, 100% packet loss, time 0ms
+

@@ -1,0 +1,2 @@
+# Preserve raw test output verbatim, including tool-generated whitespace.
+reports/** -whitespace

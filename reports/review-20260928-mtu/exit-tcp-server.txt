@@ -1,0 +1,15 @@
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 55296
+[  5] local 203.0.113.2 port 5201 connected to 10.255.255.1 port 55312
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.10   sec  7.88 MBytes  59.8 Mbits/sec                  
+[  5]   1.10-2.03   sec  7.50 MBytes  68.1 Mbits/sec                  
+[  5]   2.03-3.02   sec  8.12 MBytes  68.5 Mbits/sec                  
+[  5]   3.02-4.03   sec  8.25 MBytes  68.8 Mbits/sec                  
+[  5]   4.03-5.03   sec  8.12 MBytes  68.3 Mbits/sec                  
+[  5]   5.03-5.04   sec   128 KBytes  87.5 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-5.04   sec  40.0 MBytes  66.6 Mbits/sec                  receiver

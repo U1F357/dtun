@@ -1,0 +1,8 @@
+2026-09-27T22:41:31+08:00 mixed sizes: ICMP 28..1500-byte IPv4; reject >1500 locally
+2026-09-27T22:41:47+08:00 netem: 100ms RTT + jitter/reorder/duplicate/loss, 25s TCP
+2026-09-27T22:42:13+08:00 bottleneck: underlay 20Mbps with paced 80Mbps offered UDP load, whole-packet drops allowed
+2026-09-27T22:42:23+08:00 short outage: 10s loss=100%; then ping recovery
+2026-09-27T22:42:35+08:00 long outage: 90s loss=100%; verify auto reconnect after restore
+2026-09-27T22:44:10+08:00 malformed unauthenticated UDP flood: 10000 datagrams while live
+2026-09-27T22:44:14+08:00 idle: 35s to observe keepalives and resource recovery
+2026-09-27T22:44:49+08:00 ALL STABILITY SCENARIOS PASSED

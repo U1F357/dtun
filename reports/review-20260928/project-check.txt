@@ -1,0 +1,11 @@
+/Users/jitui/Documents/Codex/2026-09-27/ali/work/go/bin/go test -race ./...
+?   	dtun/cmd/dtun	[no test files]
+?   	dtun/internal/metrics	[no test files]
+ok  	dtun/internal/pacing	1.906s
+ok  	dtun/internal/proto	1.841s
+ok  	dtun/internal/reassembly	2.076s
+ok  	dtun/internal/settings	1.805s
+ok  	dtun/internal/transport	2.264s
+?   	dtun/internal/tun	[no test files]
+ok  	dtun/internal/tunnel	3.278s
+GOOS=linux GOARCH=amd64 /Users/jitui/Documents/Codex/2026-09-27/ali/work/go/bin/go vet ./...

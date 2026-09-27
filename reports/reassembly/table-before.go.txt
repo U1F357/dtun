@@ -1,0 +1,112 @@
+package reassembly
+
+import (
+	"bytes"
+	"dtun/internal/metrics"
+	"dtun/internal/proto"
+	"time"
+)
+
+type span struct{ off, n int }
+type entry struct {
+	buf      []byte
+	spans    []span
+	received int
+	created  time.Time
+}
+
+// Table is owned by one receive goroutine. A bounded sequence window prevents
+// completed, expired, or rejected IDs being delivered again without an unbounded tombstone map.
+type Table struct {
+	entries                     map[uint64]*entry
+	MaxPackets, MaxBytes, Bytes int
+	Timeout                     time.Duration
+	high                        uint64
+	closed                      [4096]uint64
+	M                           *metrics.Metrics
+}
+
+func New(m *metrics.Metrics) *Table {
+	return &Table{entries: map[uint64]*entry{}, MaxPackets: 1024, MaxBytes: 4 << 20, Timeout: time.Second, M: m}
+}
+func (t *Table) drop(id uint64) {
+	if e := t.entries[id]; e != nil {
+		t.Bytes -= len(e.buf) + len(e.buf) + len(e.buf)*16
+		delete(t.entries, id)
+	}
+	t.closed[id%4096] = id
+	t.M.Set("reassembly_memory_bytes", int64(t.Bytes))
+}
+func (t *Table) Expire(now time.Time) {
+	for id, e := range t.entries {
+		if now.Sub(e.created) >= t.Timeout {
+			t.drop(id)
+			t.M.Add("reassembly_timeout", 1)
+		}
+	}
+}
+func (t *Table) Add(f proto.Frame, now time.Time) []byte {
+	if !f.Valid() || f.Type != proto.Data {
+		t.M.Add("reassembly_invalid", 1)
+		return nil
+	}
+	id := f.ID
+	if id > t.high {
+		t.high = id
+		for old := range t.entries {
+			if id-old >= 4096 {
+				t.drop(old)
+			}
+		}
+	}
+	if t.high-id >= 4096 || t.closed[id%4096] == id {
+		return nil
+	}
+	e := t.entries[id]
+	if e != nil && now.Sub(e.created) >= t.Timeout {
+		t.drop(id)
+		t.M.Add("reassembly_timeout", 1)
+		return nil
+	}
+	if e == nil {
+		// Account conservatively for packet storage and worst-case 1-byte spans.
+		cost := f.Total * 18
+		if len(t.entries) >= t.MaxPackets || t.Bytes+cost > t.MaxBytes {
+			t.closed[id%4096] = id
+			t.M.Add("reassembly_limit", 1)
+			return nil
+		}
+		e = &entry{buf: make([]byte, f.Total), spans: make([]span, 0, f.Total), created: now}
+		t.entries[id] = e
+		t.Bytes += cost
+		t.M.Add("reassembly_created", 1)
+		t.M.Set("reassembly_memory_bytes", int64(t.Bytes))
+	}
+	invalid := len(e.buf) != f.Total
+	if !invalid {
+		for _, s := range e.spans {
+			if s.off == f.Offset && s.n == len(f.Payload) && bytes.Equal(e.buf[s.off:s.off+s.n], f.Payload) {
+				return nil
+			}
+			if f.Offset < s.off+s.n && s.off < f.Offset+len(f.Payload) {
+				invalid = true
+				break
+			}
+		}
+	}
+	if invalid {
+		t.drop(id)
+		t.M.Add("reassembly_invalid", 1)
+		return nil
+	}
+	copy(e.buf[f.Offset:], f.Payload)
+	e.spans = append(e.spans, span{f.Offset, len(f.Payload)})
+	e.received += len(f.Payload)
+	if e.received == len(e.buf) {
+		p := e.buf
+		t.drop(id)
+		t.M.Add("reassembly_completed", 1)
+		return p
+	}
+	return nil
+}

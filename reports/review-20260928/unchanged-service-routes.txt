@@ -1,0 +1,5 @@
+dtun-exit (id: 7)
+default via 172.25.63.253 dev eth0 proto dhcp src 172.25.43.119 metric 100 
+10.254.253.0/30 dev dtexit-ns proto kernel scope link src 10.254.253.2 
+10.255.255.0/30 via 10.254.253.1 dev dtexit-ns 
+active

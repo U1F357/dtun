@@ -1,0 +1,17 @@
+unreachable default metric 32760 
+RTNETLINK answers: No route to host
+curl: (7) Failed to connect to api.ipify.org port 443: Connection timed out
+PING 10.255.255.2 (10.255.255.2) 56(84) bytes of data.
+
+--- 10.255.255.2 ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+PING 10.255.255.2 (10.255.255.2) 56(84) bytes of data.
+64 bytes from 10.255.255.2: icmp_seq=1 ttl=64 time=49.3 ms
+
+--- 10.255.255.2 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 49.295/49.295/49.295/0.000 ms
+default dev dtun0 scope link metric 10 
+unreachable default metric 32760 
+47.242.247.74

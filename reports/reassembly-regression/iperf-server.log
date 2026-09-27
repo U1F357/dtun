@@ -1,0 +1,69 @@
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 46112
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 46122
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.02   sec  8.25 MBytes  67.6 Mbits/sec                  
+[  5]   1.02-2.02   sec  8.25 MBytes  69.5 Mbits/sec                  
+[  5]   2.02-3.03   sec  8.38 MBytes  69.7 Mbits/sec                  
+[  5]   3.03-4.02   sec  8.25 MBytes  69.5 Mbits/sec                  
+[  5]   4.02-5.03   sec  8.25 MBytes  69.0 Mbits/sec                  
+[  5]   5.03-5.05   sec   128 KBytes  57.3 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-5.05   sec  41.5 MBytes  69.0 Mbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 46138
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 46154
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  10.3 MBytes  86.6 Mbits/sec   14    273 KBytes       
+[  5]   1.00-2.00   sec  7.77 MBytes  65.2 Mbits/sec    0    321 KBytes       
+[  5]   2.00-3.00   sec  8.58 MBytes  71.9 Mbits/sec    0    354 KBytes       
+[  5]   3.00-4.00   sec  7.71 MBytes  64.6 Mbits/sec    1    270 KBytes       
+[  5]   4.00-5.00   sec  8.26 MBytes  69.3 Mbits/sec    0    293 KBytes       
+[  5]   5.00-5.01   sec   764 KBytes   548 Mbits/sec    0    293 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-5.01   sec  43.4 MBytes  72.6 Mbits/sec   15             sender
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 35138
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 48132
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec   611 KBytes  5.00 Mbits/sec  0.053 ms  0/425 (0%)  
+[  5]   1.00-2.00   sec   610 KBytes  4.99 Mbits/sec  0.057 ms  0/424 (0%)  
+[  5]   2.00-3.00   sec   611 KBytes  5.00 Mbits/sec  0.040 ms  0/425 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-3.00   sec  1.79 MBytes  5.00 Mbits/sec  0.040 ms  0/1274 (0%)  receiver
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 44966
+[  5] local 10.255.255.2 port 5201 connected to 10.255.255.1 port 44972
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.10   sec   896 KBytes  6.66 Mbits/sec                  
+[  5]   1.10-2.52   sec   896 KBytes  5.19 Mbits/sec                  
+[  5]   2.52-3.92   sec   384 KBytes  2.24 Mbits/sec                  
+[  5]   3.92-4.93   sec   256 KBytes  2.09 Mbits/sec                  
+[  5]   4.93-5.98   sec   256 KBytes  1.99 Mbits/sec                  
+[  5]   5.98-7.06   sec   256 KBytes  1.93 Mbits/sec                  
+[  5]   7.06-9.16   sec   384 KBytes  1.50 Mbits/sec                  
+[  5]   9.16-11.60  sec   384 KBytes  1.29 Mbits/sec                  
+[  5]  11.60-12.98  sec   256 KBytes  1.52 Mbits/sec                  
+[  5]  12.98-15.31  sec   256 KBytes   899 Kbits/sec                  
+[  5]  15.31-17.69  sec   256 KBytes   883 Kbits/sec                  
+[  5]  17.69-21.35  sec   256 KBytes   573 Kbits/sec                  
+[  5]  21.35-23.33  sec   256 KBytes  1.06 Mbits/sec                  
+[  5]  23.33-26.18  sec   256 KBytes   737 Kbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-26.18  sec  5.12 MBytes  1.64 Mbits/sec                  receiver
+iperf3: interrupt - the server has terminated
+-----------------------------------------------------------
+Server listening on 5201
+-----------------------------------------------------------

@@ -1,0 +1,12 @@
+/dtun
+/dist/
+/source.tar.gz
+*.pcap
+*.key
+*.pem
+*.crt
+*.pin
+peer.env
+.env
+*.local.env
+.DS_Store

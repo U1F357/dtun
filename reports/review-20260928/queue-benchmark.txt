@@ -1,0 +1,7 @@
+goos: darwin
+goarch: arm64
+pkg: dtun/internal/tunnel
+cpu: Apple M1 Pro
+BenchmarkFullQueue-8   	436768639	         2.752 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	dtun/internal/tunnel	1.848s

@@ -1,0 +1,30 @@
+[
+  {
+    "round": 2,
+    "missing_seq": 126,
+    "client_packets": [
+      "1790524188.251419 IP 10.255.255.1 > 10.255.255.2: ICMP echo request, id 30333, seq 126, length 1480"
+    ],
+    "server_packets": [
+      "1790524188.252806 IP 10.255.255.1 > 10.255.255.2: ICMP echo request, id 30333, seq 126, length 1480",
+      "1790524188.252814 IP 10.255.255.2 > 10.255.255.1: ICMP echo reply, id 30333, seq 126, length 1480"
+    ],
+    "icmp_id": 30333,
+    "matched_drops": []
+  },
+  {
+    "round": 3,
+    "missing_seq": 10,
+    "client_packets": [
+      "1790524198.005926 IP 10.255.255.1 > 10.255.255.2: ICMP echo request, id 30367, seq 10, length 1480"
+    ],
+    "server_packets": [
+      "1790524198.009150 IP 10.255.255.1 > 10.255.255.2: ICMP echo request, id 30367, seq 10, length 1480",
+      "1790524198.009159 IP 10.255.255.2 > 10.255.255.1: ICMP echo reply, id 30367, seq 10, length 1480"
+    ],
+    "icmp_id": 30367,
+    "matched_drops": [
+      "2026/09/27 23:49:58 icmp_drop reason=queue_full src=10.255.255.2 dst=10.255.255.1 type=0 id=30367 seq=10"
+    ]
+  }
+]

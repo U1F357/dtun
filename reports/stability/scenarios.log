@@ -1,0 +1,3 @@
+2026-09-27T22:37:40+08:00 soak: 120s simultaneous TCP forward/reverse plus UDP and 1500-byte ICMP
+2026-09-27T22:39:41+08:00 mixed sizes: ICMP 28..1500-byte IPv4; reject >1500 locally
+2026-09-27T22:39:56+08:00 netem: 100ms RTT + jitter/reorder/duplicate/loss, 25s TCP

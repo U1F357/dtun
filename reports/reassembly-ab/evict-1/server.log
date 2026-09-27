@@ -1,0 +1,4 @@
+2026/09/27 22:56:04 fixed outer rate: 80000000 bps (0=off), burst 16384 bytes
+2026/09/27 22:56:05 session established (DTLS 1.2 ECDHE-ECDSA AES128-GCM, SPKI pinned)
+2026/09/27 22:56:17 session ended: context canceled
+2026/09/27 22:56:17 final stats {"disconnected_drops":1,"dtls_handshakes_total":1,"dtls_session_resets":1,"fragments_rx":28183,"fragments_tx":22,"inner_packets_fragmented":1,"outer_udp_bytes_rx":23576649,"outer_udp_bytes_tx":4849,"outer_udp_max_datagram_seen":1153,"outer_udp_max_datagram_tx":1153,"outer_udp_packets_rx":28186,"outer_udp_packets_tx":25,"pacer_burst_bytes":16384,"pacer_rate_bps":80000000,"reassembly_completed":9509,"reassembly_created":18695,"reassembly_memory_bytes":0,"reassembly_peak_memory_bytes":1183200,"reassembly_peak_pending_packets":696,"reassembly_pending_packets":0,"reassembly_timeout":644,"reassembly_window_drop":8542,"tun_rx_bytes":2905,"tun_rx_packets":22,"tun_tx_bytes":14233541,"tun_tx_packets":9509}

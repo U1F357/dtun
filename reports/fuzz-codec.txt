@@ -1,0 +1,8 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/7 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 7/7 completed, now fuzzing with 8 workers
+fuzz: elapsed: 3s, execs: 789647 (263138/sec), new interesting: 0 (total: 7)
+fuzz: elapsed: 6s, execs: 1636956 (282455/sec), new interesting: 0 (total: 7)
+fuzz: elapsed: 9s, execs: 2542886 (301978/sec), new interesting: 0 (total: 7)
+fuzz: elapsed: 10s, execs: 2853298 (283689/sec), new interesting: 0 (total: 7)
+PASS
+ok  	dtun/internal/proto	10.799s

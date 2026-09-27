@@ -1,0 +1,53 @@
+-----------------------------------------------------------
+Server listening on 5212
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 60598
+[  5] local 10.255.255.2 port 5212 connected to 10.255.255.1 port 60614
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.00   sec  8.48 MBytes  71.2 Mbits/sec   12    225 KBytes       
+[  5]   1.00-2.00   sec  6.34 MBytes  53.2 Mbits/sec   15    198 KBytes       
+[  5]   2.00-3.00   sec  6.15 MBytes  51.6 Mbits/sec    0    221 KBytes       
+[  5]   3.00-4.00   sec  6.90 MBytes  57.9 Mbits/sec    0    242 KBytes       
+[  5]   4.00-5.00   sec  6.84 MBytes  57.3 Mbits/sec   63    198 KBytes       
+[  5]   5.00-6.00   sec  6.84 MBytes  57.3 Mbits/sec    0    225 KBytes       
+[  5]   6.00-7.00   sec  8.26 MBytes  69.3 Mbits/sec    0    242 KBytes       
+[  5]   7.00-8.00   sec  7.52 MBytes  63.1 Mbits/sec    0    266 KBytes       
+[  5]   8.00-9.00   sec  8.20 MBytes  68.8 Mbits/sec    0    288 KBytes       
+[  5]   9.00-10.00  sec  7.71 MBytes  64.6 Mbits/sec    7    225 KBytes       
+[  5]  10.00-11.00  sec  7.02 MBytes  58.9 Mbits/sec   90    182 KBytes       
+[  5]  11.00-12.01  sec  6.84 MBytes  56.8 Mbits/sec    0    211 KBytes       
+[  5]  12.01-13.00  sec  8.20 MBytes  69.5 Mbits/sec    0    239 KBytes       
+[  5]  13.00-14.00  sec  7.52 MBytes  63.1 Mbits/sec    0    263 KBytes       
+[  5]  14.00-15.00  sec  8.20 MBytes  68.8 Mbits/sec    0    284 KBytes       
+[  5]  15.00-16.00  sec  7.52 MBytes  63.1 Mbits/sec   17    157 KBytes       
+[  5]  16.00-17.00  sec  6.34 MBytes  53.2 Mbits/sec    0    185 KBytes       
+[  5]  17.00-18.00  sec  6.84 MBytes  57.3 Mbits/sec    0    212 KBytes       
+[  5]  18.00-19.00  sec  6.84 MBytes  57.3 Mbits/sec    0    236 KBytes       
+[  5]  19.00-20.14  sec  6.90 MBytes  50.7 Mbits/sec    0    256 KBytes       
+[  5]  20.14-21.00  sec  5.47 MBytes  53.4 Mbits/sec   75   70.7 KBytes       
+[  5]  21.00-22.00  sec  8.26 MBytes  69.3 Mbits/sec   92    228 KBytes       
+[  5]  22.00-23.00  sec  7.52 MBytes  63.1 Mbits/sec    0    253 KBytes       
+[  5]  23.00-24.00  sec  8.20 MBytes  68.8 Mbits/sec    0    267 KBytes       
+[  5]  24.00-25.00  sec  8.20 MBytes  68.8 Mbits/sec    0    290 KBytes       
+[  5]  25.00-26.00  sec  6.40 MBytes  53.7 Mbits/sec   12    168 KBytes       
+[  5]  26.00-27.00  sec  6.90 MBytes  57.9 Mbits/sec    0    197 KBytes       
+[  5]  27.00-28.00  sec  6.90 MBytes  57.9 Mbits/sec    0    221 KBytes       
+[  5]  28.00-29.00  sec  6.96 MBytes  58.4 Mbits/sec    0    245 KBytes       
+[  5]  29.00-30.00  sec  6.84 MBytes  57.3 Mbits/sec    0    266 KBytes       
+[  5]  30.00-31.00  sec  7.58 MBytes  63.6 Mbits/sec   10   14.1 KBytes       
+[  5]  31.00-32.00  sec  6.28 MBytes  52.6 Mbits/sec  216    164 KBytes       
+[  5]  32.00-33.00  sec  6.96 MBytes  58.4 Mbits/sec    0    194 KBytes       
+[  5]  33.00-34.00  sec  6.84 MBytes  57.4 Mbits/sec    0    221 KBytes       
+[  5]  34.00-35.00  sec  6.84 MBytes  57.3 Mbits/sec    0    243 KBytes       
+[  5]  35.00-36.00  sec  6.90 MBytes  57.9 Mbits/sec  153    170 KBytes       
+[  5]  36.00-37.00  sec  8.33 MBytes  69.8 Mbits/sec    0    222 KBytes       
+[  5]  37.00-38.00  sec  7.83 MBytes  65.7 Mbits/sec    0    246 KBytes       
+[  5]  38.00-39.00  sec  8.33 MBytes  69.8 Mbits/sec    0    264 KBytes       
+[  5]  39.00-40.00  sec  8.20 MBytes  68.8 Mbits/sec    0    287 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-40.02  sec   291 MBytes  61.0 Mbits/sec  762             sender
+iperf3: interrupt - the server has terminated
+-----------------------------------------------------------
+Server listening on 5212
+-----------------------------------------------------------

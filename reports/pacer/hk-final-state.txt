@@ -1,0 +1,6 @@
+active
+/opt/dtun-poc/dtun --max-rate-bps 80000000 --server --endpoint 0.0.0.0:80 --allow-ip 59.110.163.61 --address 10.255.255.2/30 --cert /etc/dtun/server.crt --key /etc/dtun/server.key --peer-pin d52a14dd173bed0875d7d5ca21dc8bb4280f67e7e3c59f90c43a2ac11d98e271 default via 172.31.31.253 dev eth0 proto dhcp src 172.31.25.180 metric 100 
+UNCONN 0      0                 0.0.0.0:80        0.0.0.0:*    users:(("dtun",pid=22772,fd=6))          
+inactive
+inactive
+inactive

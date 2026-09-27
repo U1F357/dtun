@@ -1,0 +1,4 @@
+HK journal: 2026-09-27 22:18:02 CST main process terminated by SIGKILL (explicit test).
+HK journal: 2026-09-27 22:18:06 CST dtun-poc.service started by systemd.
+BJ journal: 2026-09-27 22:19:17 CST session ended: DTLS read timeout.
+BJ journal: 2026-09-27 22:19:17 CST session established, pinned DTLS 1.2.

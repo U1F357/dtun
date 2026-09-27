@@ -1,0 +1,92 @@
+-----------------------------------------------------------
+Server listening on 5211
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 49188
+[  5] local 10.255.255.2 port 5211 connected to 10.255.255.1 port 49190
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.02   sec  3.50 MBytes  28.8 Mbits/sec                  
+[  5]   1.02-2.02   sec  7.62 MBytes  64.2 Mbits/sec                  
+[  5]   2.02-3.02   sec  7.88 MBytes  66.1 Mbits/sec                  
+[  5]   3.02-4.03   sec  8.00 MBytes  66.1 Mbits/sec                  
+[  5]   4.03-5.02   sec  7.75 MBytes  65.5 Mbits/sec                  
+[  5]   5.02-6.03   sec  7.62 MBytes  63.3 Mbits/sec                  
+[  5]   6.03-7.02   sec  6.75 MBytes  57.6 Mbits/sec                  
+[  5]   7.02-8.02   sec  7.25 MBytes  60.7 Mbits/sec                  
+[  5]   8.02-9.03   sec  8.00 MBytes  66.5 Mbits/sec                  
+[  5]   9.03-10.02  sec  7.88 MBytes  66.5 Mbits/sec                  
+[  5]  10.02-11.03  sec  7.00 MBytes  58.3 Mbits/sec                  
+[  5]  11.03-12.02  sec  7.50 MBytes  63.5 Mbits/sec                  
+[  5]  12.02-13.03  sec  8.00 MBytes  66.4 Mbits/sec                  
+[  5]  13.03-14.02  sec  6.88 MBytes  58.4 Mbits/sec                  
+[  5]  14.02-15.03  sec  6.88 MBytes  57.3 Mbits/sec                  
+[  5]  15.03-16.03  sec  7.88 MBytes  65.8 Mbits/sec                  
+[  5]  16.03-17.02  sec  7.38 MBytes  62.6 Mbits/sec                  
+[  5]  17.02-18.03  sec  6.88 MBytes  56.9 Mbits/sec                  
+[  5]  18.03-19.03  sec  7.25 MBytes  61.1 Mbits/sec                  
+[  5]  19.03-20.03  sec  7.88 MBytes  65.8 Mbits/sec                  
+[  5]  20.03-20.05  sec   128 KBytes  54.6 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-20.05  sec   146 MBytes  61.0 Mbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5211
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 34458
+[  5] local 10.255.255.2 port 5211 connected to 10.255.255.1 port 34462
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.02   sec  8.00 MBytes  65.6 Mbits/sec                  
+[  5]   1.02-2.03   sec  7.50 MBytes  62.2 Mbits/sec                  
+[  5]   2.03-3.02   sec  7.12 MBytes  60.7 Mbits/sec                  
+[  5]   3.02-4.02   sec  7.88 MBytes  66.2 Mbits/sec                  
+[  5]   4.02-5.03   sec  7.62 MBytes  62.9 Mbits/sec                  
+[  5]   5.03-6.03   sec  6.12 MBytes  51.4 Mbits/sec                  
+[  5]   6.03-7.02   sec  7.50 MBytes  63.9 Mbits/sec                  
+[  5]   7.02-8.02   sec  6.75 MBytes  56.3 Mbits/sec                  
+[  5]   8.02-9.02   sec  7.88 MBytes  66.4 Mbits/sec                  
+[  5]   9.02-10.01  sec  7.88 MBytes  66.4 Mbits/sec                  
+[  5]  10.01-11.02  sec  7.75 MBytes  64.4 Mbits/sec                  
+[  5]  11.02-12.02  sec  7.75 MBytes  65.0 Mbits/sec                  
+[  5]  12.02-13.02  sec  7.50 MBytes  62.8 Mbits/sec                  
+[  5]  13.02-14.03  sec  7.75 MBytes  64.7 Mbits/sec                  
+[  5]  14.03-15.02  sec  7.75 MBytes  65.4 Mbits/sec                  
+[  5]  15.02-16.03  sec  7.88 MBytes  65.9 Mbits/sec                  
+[  5]  16.03-17.02  sec  7.75 MBytes  65.4 Mbits/sec                  
+[  5]  17.02-18.03  sec  7.50 MBytes  62.3 Mbits/sec                  
+[  5]  18.03-19.03  sec  7.75 MBytes  65.1 Mbits/sec                  
+[  5]  19.03-20.03  sec  7.88 MBytes  65.8 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-20.03  sec   152 MBytes  63.4 Mbits/sec                  receiver
+-----------------------------------------------------------
+Server listening on 5211
+-----------------------------------------------------------
+Accepted connection from 10.255.255.1, port 50714
+[  5] local 10.255.255.2 port 5211 connected to 10.255.255.1 port 50722
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.02   sec  7.75 MBytes  63.6 Mbits/sec                  
+[  5]   1.02-2.03   sec  7.38 MBytes  61.1 Mbits/sec                  
+[  5]   2.03-3.03   sec  7.00 MBytes  59.0 Mbits/sec                  
+[  5]   3.03-4.05   sec  5.62 MBytes  46.4 Mbits/sec                  
+[  5]   4.05-5.04   sec  5.38 MBytes  45.5 Mbits/sec                  
+[  5]   5.04-6.02   sec  5.88 MBytes  50.1 Mbits/sec                  
+[  5]   6.02-7.02   sec  7.88 MBytes  66.2 Mbits/sec                  
+[  5]   7.02-8.03   sec  7.88 MBytes  65.7 Mbits/sec                  
+[  5]   8.03-9.03   sec  7.75 MBytes  64.8 Mbits/sec                  
+[  5]   9.03-10.02  sec  7.50 MBytes  63.8 Mbits/sec                  
+[  5]  10.02-11.02  sec  7.88 MBytes  66.0 Mbits/sec                  
+[  5]  11.02-12.02  sec  7.25 MBytes  60.7 Mbits/sec                  
+[  5]  12.02-13.03  sec  6.50 MBytes  53.7 Mbits/sec                  
+[  5]  13.03-14.03  sec  7.38 MBytes  62.1 Mbits/sec                  
+[  5]  14.03-15.03  sec  7.50 MBytes  63.0 Mbits/sec                  
+[  5]  15.03-16.02  sec  6.75 MBytes  56.9 Mbits/sec                  
+[  5]  16.02-17.02  sec  5.62 MBytes  47.2 Mbits/sec                  
+[  5]  17.02-18.02  sec  7.75 MBytes  64.9 Mbits/sec                  
+[  5]  18.02-19.03  sec  7.88 MBytes  65.9 Mbits/sec                  
+[  5]  19.03-20.03  sec  6.75 MBytes  56.6 Mbits/sec                  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-20.03  sec   141 MBytes  59.2 Mbits/sec                  receiver
+iperf3: interrupt - the server has terminated
+-----------------------------------------------------------
+Server listening on 5211
+-----------------------------------------------------------

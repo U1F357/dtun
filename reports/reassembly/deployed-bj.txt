@@ -1,0 +1,14 @@
+2026-09-27T23:04:31+08:00 bottleneck: underlay 20Mbps with paced 80Mbps offered UDP load, whole-packet drops allowed
+2026-09-27T23:04:41+08:00 short outage: 10s loss=100%; then ping recovery
+2026-09-27T23:04:53+08:00 long outage: 90s loss=100%; verify auto reconnect after restore
+2026-09-27T23:06:27+08:00 malformed unauthenticated UDP flood: 10000 datagrams while live
+2026-09-27T23:06:31+08:00 idle: 35s to observe keepalives and resource recovery
+2026-09-27T23:06:46+08:00
+f6cfbf9e2bd0f8b69813d6df383878b3c9ab0892c4af32574426e05be90e77d2  /opt/dtun-poc/dtun
+default via 172.25.63.253 dev eth0 proto dhcp src 172.25.43.119 metric 100 
+10.254.253.0/30 dev dtexit-ns proto kernel scope link src 10.254.253.2 
+10.255.255.0/30 via 10.254.253.1 dev dtexit-ns 
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default
+ExecStart={ path=/opt/dtun-poc/dtun ; argv[]=/opt/dtun-poc/dtun $DTUN_ARGS ; ignore_errors=no ; start_time=[Sun 2026-09-27 23:00:56 CST] ; stop_time=[n/a] ; pid=3369454 ; code=(null) ; status=0/0 }

@@ -1,0 +1,21 @@
+[Unit]
+Description=DTLS UDP L3 tunnel PoC
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/dtun/peer.env
+ExecStart=/opt/dtun-poc/dtun $DTUN_ARGS
+ExecStartPost=/opt/dtun-poc/scripts/post-start.sh ${ROLE}
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=5
+KillMode=control-group
+UMask=0077
+NoNewPrivileges=true
+# Network-namespace setup needs the host mount namespace in this PoC.
+# PoC setup scripts need root / CAP_NET_ADMIN. No claim of full privilege drop.
+
+[Install]
+WantedBy=multi-user.target

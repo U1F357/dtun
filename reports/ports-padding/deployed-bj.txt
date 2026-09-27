@@ -1,0 +1,10 @@
+active
+default via 172.25.63.253 dev eth0 proto dhcp src 172.25.43.119 metric 100 
+10.254.253.0/30 dev dtexit-ns proto kernel scope link src 10.254.253.2 
+10.255.255.0/30 via 10.254.253.1 dev dtexit-ns 
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default
+dtun-exit (id: 7)
+ead6e49d6ba373c1d406afc8e37979e255b2f9abc2c64b94dc5236cdaf8abdee  /opt/dtun-poc/dtun
+['--max-rate-bps 80000000', '--ports 80,443,23333', '--switch-interval 10m']

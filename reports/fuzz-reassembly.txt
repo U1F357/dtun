@@ -1,0 +1,8 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/34 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 34/34 completed, now fuzzing with 8 workers
+fuzz: elapsed: 3s, execs: 29579 (9858/sec), new interesting: 5 (total: 39)
+fuzz: elapsed: 6s, execs: 29579 (0/sec), new interesting: 5 (total: 39)
+fuzz: elapsed: 9s, execs: 29579 (0/sec), new interesting: 5 (total: 39)
+fuzz: elapsed: 11s, execs: 29579 (0/sec), new interesting: 5 (total: 39)
+PASS
+ok  	dtun/internal/reassembly	11.386s
