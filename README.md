@@ -39,7 +39,7 @@ CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -o dtun-arm64 ./cmd/dtu
 
 ## 最小连通性示例
 
-以下地址为文档示例，需替换为真实公网地址：服务端 `198.51.100.10`，客户端 `192.0.2.10`。双方放行 UDP 80、443、23333；TCP 80 放行不能代替 UDP。
+以下地址为文档示例，需替换为真实公网地址：服务端 `198.51.100.10`，客户端 `192.0.2.10`。端口可自行选择；以下使用 `20000,20001,20002` 作为示例。请按实际配置放行对应 UDP 端口。
 
 在各自主机上生成身份，私钥留在本机：
 
@@ -55,8 +55,8 @@ sh scripts/certgen.sh ./identity client
 服务端：
 
 ```sh
-sudo ./dtun --server --endpoint 0.0.0.0:80 --allow-ip 192.0.2.10 \
-  --ports 80,443,23333 --address 10.255.255.2/30 --mtu 1500 \
+sudo ./dtun --server --endpoint 0.0.0.0:20000 --allow-ip 192.0.2.10 \
+  --ports 20000,20001,20002 --address 10.255.255.2/30 --mtu 1500 \
   --cert identity/server.crt --key identity/server.key \
   --peer-pin "$(cat identity/client.pin)" --max-rate-bps 80000000
 ```
@@ -64,7 +64,7 @@ sudo ./dtun --server --endpoint 0.0.0.0:80 --allow-ip 192.0.2.10 \
 客户端：
 
 ```sh
-sudo ./dtun --endpoint 198.51.100.10:80 --ports 80,443,23333 \
+sudo ./dtun --endpoint 198.51.100.10:20000 --ports 20000,20001,20002 \
   --switch-interval 10m --address 10.255.255.1/30 --mtu 1500 \
   --cert identity/client.crt --key identity/client.key \
   --peer-pin "$(cat identity/server.pin)" --max-rate-bps 80000000

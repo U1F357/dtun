@@ -4,7 +4,7 @@
 
 ## 结论
 
-**TUN + DTLS/UDP 方案已经在两台指定服务器部署并真实打通。** 北京 aliyun-BJ-200 → 香港 aliyun-HK 的 UDP 80，使用 DTLS 1.2 ECDHE-ECDSA AES-128-GCM、双向固定 SPKI 身份认证；TUN MTU 1500。香港作为 IPv4 NAT 出口。独立 `dtun-exit` 命名空间中的默认路由及 DNS 均经过香港。
+**TUN + DTLS/UDP 方案已经在两台指定服务器部署并真实打通。** 北京 aliyun-BJ-200 → 香港 aliyun-HK 的 测试 UDP 端口，使用 DTLS 1.2 ECDHE-ECDSA AES-128-GCM、双向固定 SPKI 身份认证；TUN MTU 1500。香港作为 IPv4 NAT 出口。独立 `dtun-exit` 命名空间中的默认路由及 DNS 均经过香港。
 
 这是功能/语义验证版，并不等于已具备生产级性能和运维能力。按照本次指示，没有尝试 HY2，也没有做 HY2 对照；不能推出“去除第二层拥塞控制一定有性能收益”。
 
@@ -78,6 +78,6 @@ TCP retransmits 是内层 Linux TCP 的行为，隧道没有重传 DATA。DTLS �
 
 ## 当前部署状态
 
-两端 dtun-poc.service 已启用开机启动并运行；香港 UDP 80。香港 NAT/路由、北京源地址策略路由和默认走隧道的 `dtun-exit` 已配置。现有北京 SSH、Docker 和主机默认路由保留。
+两端 dtun-poc.service 已启用开机启动并运行；香港 测试 UDP 端口。香港 NAT/路由、北京源地址策略路由和默认走隧道的 `dtun-exit` 已配置。现有北京 SSH、Docker 和主机默认路由保留。
 
 临时 iperf 和 tcpdump 服务已停止；实验 namespace 自动清理。操作方法、证书生成、复现脚本及回滚见 README。

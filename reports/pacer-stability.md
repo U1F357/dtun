@@ -2,7 +2,7 @@
 
 # 80 Mbps pacer、CPU 与扩展稳定性验证
 
-测试日期：2026-09-27。Go 实现，Pion DTLS 1.2，香港 UDP 80；两端均为 2 vCPU Intel Xeon Platinum 虚拟机，具有 AES 指令。
+测试日期：2026-09-27。Go 实现，Pion DTLS 1.2，香港 测试 UDP 端口；两端均为 2 vCPU Intel Xeon Platinum 虚拟机，具有 AES 指令。
 
 ## 当前路由与部署
 

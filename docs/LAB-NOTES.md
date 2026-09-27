@@ -2,7 +2,7 @@
 
 本地整理版（2026-09-28）：增加可调 TUN MTU/资源参数、满队列零分配路径及可取消 TUN I/O。已在隔离网络验证，本次未升级两台服务器的在用服务；它们仍运行此前的软切换版。
 
-本项目搬运完整 IP 包，不终止业务 TCP。已部署于 aliyun-BJ-200 ↔ aliyun-HK，香港监听 **UDP 80、443、23333** 并作为 IPv4 NAT 出口。TUN MTU 默认 1500，可通过 `--mtu` 设为 576–9000；外层 UDP 载荷上限 1200，启用随机 padding 后实际 AES-GCM 数据包最大 1173 字节。
+本项目搬运完整 IP 包，不终止业务 TCP。已部署于 aliyun-BJ-200 ↔ aliyun-HK，香港监听 **多个自定义 UDP 端口** 并作为 IPv4 NAT 出口。TUN MTU 默认 1500，可通过 `--mtu` 设为 576–9000；外层 UDP 载荷上限 1200，启用随机 padding 后实际 AES-GCM 数据包最大 1173 字节。
 
 ## 当前测试模式：不使用隧道默认路由
 
@@ -47,12 +47,13 @@ systemctl restart dtun-poc
 
 ```text
 # 服务端：同一 endpoint 主机地址，同时监听列表内端口
---server --endpoint 0.0.0.0:80 --ports 80,443,23333
+# 以下端口仅为示例，请按实际配置替换。
+--server --endpoint 0.0.0.0:20000 --ports 20000,20001,20002
 # 客户端：从列表第一个端口开始，成功建连后每 10 分钟轮换
---endpoint 47.242.247.74:80 --ports 80,443,23333 --switch-interval 10m
+--endpoint 198.51.100.10:20000 --ports 20000,20001,20002 --switch-interval 10m
 ```
 
-`--ports` 覆盖 endpoint 中的端口，最多 16 个，必须互不重复、范围 1–65535；省略时只使用 endpoint 原端口。`--switch-interval 0` 关闭定时切换，多端口列表仍在断线/建连失败后尝试下一端口。固定选择 443 可使用 `--ports 443 --switch-interval 0`。非零切换间隔至少 1 秒，仅客户端且至少两端口可用；正式部署使用 10 分钟，短间隔仅用于压力测试。
+`--ports` 覆盖 endpoint 中的端口，最多 16 个，必须互不重复、范围 1–65535；省略时只使用 endpoint 原端口。`--switch-interval 0` 关闭定时切换，多端口列表仍在断线/建连失败后尝试下一端口。固定选择某个端口 可使用 `--ports 20000 --switch-interval 0`。非零切换间隔至少 1 秒，仅客户端且至少两端口可用；正式部署使用 10 分钟，短间隔仅用于压力测试。
 
 切换计时到期后，后台新建 UDP socket（操作系统选择源端口）并重新进行 DTLS 认证，旧通道继续传输；候选端口失败时保留健康旧通道，再尝试其他端口。新会话认证完成后交接：旧发送器发完当前整个 IP 包，保留未发送的完整包队列；新发送器接手，旧接收器继续保留 1 秒处理迟到分片。新旧接收器分别解密/重组，完整 IP 包汇入同一个 TUN。不是将不同会话的密文混合解密，也不在两个通道重复发送业务包。
 
@@ -97,7 +98,7 @@ sudo MATRIX=1 OUT=reports/lab-matrix scripts/netns-lab.sh
 2. 各自生成身份：`scripts/certgen.sh /etc/dtun client` 或 `server`。脚本拒绝覆盖已有私钥。
 3. 交换 `.pin` 文件中的公钥指纹，按 `configs/*.example.env` 写 `/etc/dtun/peer.env`；无需传输私钥。
 4. 修改 `scripts/post-start.sh` 中的香港公网 IP、北京物理网关、接口，调整 setup 脚本地址。
-5. 香港安全组放行来源北京公网 IP 的 **UDP 80、443、23333**（或自定义列表）；配置/检查本机防火墙。
+5. 香港安全组放行来源北京公网 IP 的 **多个自定义 UDP 端口**（或自定义列表）；配置/检查本机防火墙。
 6. 复制 `configs/dtun-poc.service` 到 `/etc/systemd/system/`，执行 `systemctl daemon-reload && systemctl enable --now dtun-poc`。
 
 setup-server 只管理 `inet dtun_poc` 表，启用 IPv4 forwarding 并记录原值；setup-client 只增加隧道端点 host route、veth、命名空间和精确转发规则，并移除本项目旧的默认路由策略。香港脚本应在检查现有 nftables 规则后使用；独立表的 accept 不会覆盖其他表的 drop。
