@@ -8,10 +8,12 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"net"
 	"net/netip"
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -43,10 +45,16 @@ func OpenWithMTU(name, address string, mtu int) (*Device, error) {
 	if mtu < 576 || mtu > proto.MaxInner || (prefix.Addr().Is6() && mtu < 1280) {
 		return nil, fmt.Errorf("TUN MTU must be 576..%d (IPv6 >=1280)", proto.MaxInner)
 	}
-	// Never open/reconfigure an existing adapter belonging to another process.
-	if existing, err := wintun.OpenAdapter(name); err == nil {
-		existing.Close()
-		return nil, fmt.Errorf("adapter %q already exists; choose another --tun name", name)
+	// Enumerate through the OS rather than taking a second Wintun handle.
+	// Reject all name collisions, including adapters owned by other software.
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		return nil, fmt.Errorf("enumerate network adapters: %w", err)
+	}
+	for _, iface := range interfaces {
+		if strings.EqualFold(iface.Name, name) {
+			return nil, fmt.Errorf("adapter %q already exists; choose another --tun name", name)
+		}
 	}
 	sum := sha256.Sum256([]byte("dtun/wintun/" + name))
 	sum[6] = (sum[6] & 0x0f) | 0x50
@@ -94,7 +102,17 @@ $i = [uint32]$env:DTUN_IFINDEX
 $m = [uint32]$env:DTUN_MTU
 Set-NetIPInterface -InterfaceIndex $i -AddressFamily IPv4 -Dhcp Disabled -NlMtuBytes $m -PolicyStore ActiveStore
 Set-NetIPInterface -InterfaceIndex $i -AddressFamily IPv6 -NlMtuBytes ([Math]::Max(1280, $m)) -PolicyStore ActiveStore
-New-NetIPAddress -InterfaceIndex $i -IPAddress $env:DTUN_IP -PrefixLength ([byte]$env:DTUN_PREFIX) -PolicyStore ActiveStore | Out-Null`
+New-NetIPAddress -InterfaceIndex $i -IPAddress $env:DTUN_IP -PrefixLength ([byte]$env:DTUN_PREFIX) -PolicyStore ActiveStore | Out-Null
+$deadline = (Get-Date).AddSeconds(15)
+do {
+ $address = Get-NetIPAddress -InterfaceIndex $i -IPAddress $env:DTUN_IP -ErrorAction Stop
+ if ($address.AddressState -eq 'Preferred') { exit 0 }
+ if ($address.AddressState -eq 'Duplicate' -or $address.AddressState -eq 'Invalid') {
+  throw "TUN address is $($address.AddressState)"
+ }
+ Start-Sleep -Milliseconds 100
+} while ((Get-Date) -lt $deadline)
+throw "TUN address did not become usable: $($address.AddressState)"`
 	cmd := exec.Command("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", script)
 	cmd.Env = append(os.Environ(), "DTUN_IFINDEX="+strconv.FormatUint(uint64(index), 10), "DTUN_MTU="+strconv.Itoa(mtu), "DTUN_IP="+prefix.Addr().String(), "DTUN_PREFIX="+strconv.Itoa(prefix.Bits()))
 	if out, err := cmd.CombinedOutput(); err != nil {

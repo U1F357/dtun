@@ -37,8 +37,6 @@ func TestWintunPacketsAndClose(t *testing.T) {
 		other.Close()
 		t.Fatal("reused an existing adapter")
 	}
-	// Wait for Windows address duplicate detection to settle.
-	time.Sleep(3 * time.Second)
 	conn, err := net.DialUDP("udp4", &net.UDPAddr{IP: net.IPv4(198, 18, 0, 1)}, &net.UDPAddr{IP: net.IPv4(198, 18, 0, 2), Port: 23456})
 	if err != nil {
 		t.Fatal(err)
