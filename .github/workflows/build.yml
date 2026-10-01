@@ -58,7 +58,9 @@ jobs:
           mkdir -p dist/package
           go build -trimpath -ldflags='-s -w' -o dist/package/dtun ./cmd/dtun
           go build -trimpath -ldflags='-s -w' -o dist/package/dtun-keygen ./cmd/dtun-keygen
-          cp README.md CONFIGURATION.md dist/package/
+          cp README.md CONFIGURATION.md CHANGELOG.md dist/package/
+          mkdir -p dist/package/docs
+          cp docs/WINDOWS.md dist/package/docs/
           mkdir -p dist/package/scripts
           cp scripts/certgen.sh dist/package/scripts/
           printf 'commit=%s\nref=%s\n' "$GITHUB_SHA" "$GITHUB_REF" > dist/package/BUILDINFO.txt
@@ -103,7 +105,7 @@ jobs:
           Copy-Item "$env:RUNNER_TEMP/wintun-sdk/wintun/bin/amd64/wintun.dll" "$env:RUNNER_TEMP/dtun-test/"
           $before = @(Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Select-Object InterfaceIndex,NextHop,RouteMetric | ConvertTo-Json -Compress)
           $env:DTUN_TEST_WINTUN = '1'
-          & "$env:RUNNER_TEMP/dtun-test/tun.test.exe" -test.v -test.timeout 2m -test.run '^TestWintunPacketsAndClose$'
+          & "$env:RUNNER_TEMP/dtun-test/tun.test.exe" '-test.v' '-test.timeout=2m' '-test.run=^TestWintunPacketsAndClose$'
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           $after = @(Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Select-Object InterfaceIndex,NextHop,RouteMetric | ConvertTo-Json -Compress)
           if (Compare-Object $before $after) { throw 'Default routes changed' }
@@ -121,7 +123,9 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           Copy-Item "$env:RUNNER_TEMP/wintun-sdk/wintun/bin/$env:GOARCH/wintun.dll" dist/package/
           Copy-Item "$env:RUNNER_TEMP/wintun-sdk/wintun/LICENSE.txt" dist/package/WINTUN-LICENSE.txt
-          Copy-Item README.md,CONFIGURATION.md,docs/WINDOWS.md,docs/THIRD-PARTY-WINTUN.txt dist/package/
+          Copy-Item README.md,CONFIGURATION.md,CHANGELOG.md dist/package/
+          New-Item -ItemType Directory -Force dist/package/docs | Out-Null
+          Copy-Item docs/WINDOWS.md,docs/THIRD-PARTY-WINTUN.txt dist/package/docs/
           @("commit=$env:GITHUB_SHA", "ref=$env:GITHUB_REF", (go version)) | Set-Content dist/package/BUILDINFO.txt
           Compress-Archive -Path dist/package/* -DestinationPath "dist/dtun_windows_$env:GOARCH.zip"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
