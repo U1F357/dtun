@@ -1,6 +1,6 @@
 # dtun
 
-一个用 Go 编写的 Linux 点到点加密 L3 隧道：TUN + DTLS/UDP，可承载 IPv4/IPv6 的 TCP、UDP 和 ICMP 流量。
+一个用 Go 编写的 Linux / Windows 点到点加密 L3 隧道：TUN + DTLS/UDP，可承载 IPv4/IPv6 的 TCP、UDP 和 ICMP 流量。
 
 **这是一个由 AI（OpenAI Codex）根据用户需求创建并持续迭代的项目，包括代码、文档和测试。当前为实验性实现，未经独立安全审计。**
 
@@ -18,7 +18,7 @@
 
 ## 下载与构建
 
-从 [Releases](https://github.com/U1F357/dtun/releases) 下载 Linux amd64 或 arm64 压缩包及 `SHA256SUMS`。在下载目录校验并解压，例如：
+从 [Releases](https://github.com/U1F357/dtun/releases) 下载 Linux / Windows 的 amd64 或 arm64 压缩包及 `SHA256SUMS`。在下载目录校验并解压，例如：
 
 ```sh
 sha256sum --ignore-missing -c SHA256SUMS
@@ -26,7 +26,7 @@ tar -xzf dtun_linux_amd64.tar.gz
 ./dtun --help
 ```
 
-运行需要 Linux、`/dev/net/tun`、iproute2，以及 root 或适当的 `CAP_NET_ADMIN` 权限。当前不支持在 macOS / Windows 上运行隧道。
+Linux 运行需要`/dev/net/tun`、iproute2，以及 root 或适当的 `CAP_NET_ADMIN` 权限。Windows 从 v0.2.0 起提供 Wintun 客户端，详见 [Windows 使用说明](docs/WINDOWS.md)。目前不支持 macOS。
 
 源码构建需要 Go 1.24 或更高版本；CI 使用当前稳定版 Go：
 
@@ -84,13 +84,13 @@ TUN MTU 和外层网络 MTU 是两个不同的限制。大内层包会拆成多�
 
 ## 自动编译与 Release
 
-GitHub Actions 在推送 main、提交 PR 或手动触发时执行 race 测试、vet、真实 Linux TUN 关闭测试，并交叉编译 Linux amd64 / arm64 压缩包。ARM64 目前只做交叉编译，未做原生运行测试。
+GitHub Actions 在推送 main、提交 PR 或手动触发时执行 Linux / Windows 原生 race 测试、vet、真实 Linux TUN 关闭测试及 Windows Wintun 收发/清理测试，生成两种系统的 amd64 / arm64 压缩包。ARM64 目前只做交叉编译，未做原生运行测试。
 
-推送 `v*` 标签会在检查通过后创建 GitHub Release，附带两个架构的压缩包和 SHA-256 校验文件：
+推送 `v*` 标签会在检查通过后创建 GitHub Release，附带 Linux 和 Windows 两个架构的压缩包和 SHA-256 校验文件：
 
 ```sh
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.2.0
+git push origin v0.2.0
 ```
 
 `v0.*` 和包含 `-` 的版本标记为预发布。已发布版本应使用新标签更新，避免覆盖已有发布产物。

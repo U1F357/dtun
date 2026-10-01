@@ -10,3 +10,7 @@ peer.env
 .env
 *.local.env
 .DS_Store
+
+*.exe
+*.dll
+/dtun-keygen

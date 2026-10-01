@@ -57,6 +57,7 @@ jobs:
         run: |
           mkdir -p dist/package
           go build -trimpath -ldflags='-s -w' -o dist/package/dtun ./cmd/dtun
+          go build -trimpath -ldflags='-s -w' -o dist/package/dtun-keygen ./cmd/dtun-keygen
           cp README.md CONFIGURATION.md dist/package/
           mkdir -p dist/package/scripts
           cp scripts/certgen.sh dist/package/scripts/
@@ -69,9 +70,69 @@ jobs:
           path: dist/*.tar.gz
           if-no-files-found: error
           retention-days: 7
+  windows:
+    runs-on: windows-2022
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: stable
+      - name: Fetch verified Wintun
+        shell: pwsh
+        run: ./scripts/fetch-wintun.ps1 -Destination "$env:RUNNER_TEMP/wintun-sdk"
+      - name: Native Windows tests and real Wintun packets
+        if: matrix.arch == 'amd64'
+        shell: pwsh
+        run: |
+          go mod verify
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          go test -race ./...
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          go vet ./...
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Force "$env:RUNNER_TEMP/dtun-test" | Out-Null
+          go test -race -c -o "$env:RUNNER_TEMP/dtun-test/tun.test.exe" ./internal/tun
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          Copy-Item "$env:RUNNER_TEMP/wintun-sdk/wintun/bin/amd64/wintun.dll" "$env:RUNNER_TEMP/dtun-test/"
+          $before = @(Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Select-Object InterfaceIndex,NextHop,RouteMetric | ConvertTo-Json -Compress)
+          $env:DTUN_TEST_WINTUN = '1'
+          & "$env:RUNNER_TEMP/dtun-test/tun.test.exe" -test.v -test.timeout 2m -test.run '^TestWintunPacketsAndClose$'
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $after = @(Get-NetRoute -DestinationPrefix '0.0.0.0/0' | Select-Object InterfaceIndex,NextHop,RouteMetric | ConvertTo-Json -Compress)
+          if (Compare-Object $before $after) { throw 'Default routes changed' }
+          if (Get-NetAdapter -Name 'dtun-ci' -ErrorAction SilentlyContinue) { throw 'Test adapter leaked' }
+      - name: Package Windows
+        shell: pwsh
+        env:
+          GOARCH: ${{ matrix.arch }}
+          CGO_ENABLED: '0'
+        run: |
+          New-Item -ItemType Directory -Force dist/package | Out-Null
+          go build -trimpath -ldflags='-s -w' -o dist/package/dtun.exe ./cmd/dtun
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          go build -trimpath -ldflags='-s -w' -o dist/package/dtun-keygen.exe ./cmd/dtun-keygen
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          Copy-Item "$env:RUNNER_TEMP/wintun-sdk/wintun/bin/$env:GOARCH/wintun.dll" dist/package/
+          Copy-Item "$env:RUNNER_TEMP/wintun-sdk/wintun/LICENSE.txt" dist/package/WINTUN-LICENSE.txt
+          Copy-Item README.md,CONFIGURATION.md,docs/WINDOWS.md,docs/THIRD-PARTY-WINTUN.txt dist/package/
+          @("commit=$env:GITHUB_SHA", "ref=$env:GITHUB_REF", (go version)) | Set-Content dist/package/BUILDINFO.txt
+          Compress-Archive -Path dist/package/* -DestinationPath "dist/dtun_windows_$env:GOARCH.zip"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dtun-windows-${{ matrix.arch }}
+          path: dist/*.zip
+          if-no-files-found: error
+          retention-days: 7
   release:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    needs: [test, build]
+    needs: [test, build, windows]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -79,7 +140,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          pattern: dtun-linux-*
+          pattern: dtun-*
           merge-multiple: true
           path: dist
       - name: Publish release
@@ -89,7 +150,7 @@ jobs:
           TAG: ${{ github.ref_name }}
         run: |
           cd dist
-          sha256sum *.tar.gz > SHA256SUMS
+          sha256sum *.tar.gz *.zip > SHA256SUMS
           flags=()
           if [[ "$TAG" == v0.* || "$TAG" == *-* ]]; then flags+=(--prerelease); fi
-          gh release create "$TAG" ./*.tar.gz SHA256SUMS --verify-tag --title "$TAG" --generate-notes "${flags[@]}"
+          gh release create "$TAG" ./*.tar.gz ./*.zip SHA256SUMS --verify-tag --title "$TAG" --generate-notes "${flags[@]}"
